@@ -1,18 +1,24 @@
 class Obj:
     data_int = 0
-    data_str = "0"
+    data_str = str()
 
     def __init__(self, *data, **also_data):
-        if type(data[0]) == int and type(data[1]) == int:
-            print(data[0],data[1])
-            self.data_int = data[0] + data[1]
-        elif type(data[0]) == (str or chr) and type(data[1]) == (str or chr):
-            self.data_str = data[0] + data[1]
-        elif (type(data[0]) == int) and (type(data[1]) == str) or (type(data[0]) == str) and (type(data[1]) == int):
-            if data[0] is int and data[1] is str:
-                self.data_int, self.data_str = data[0], data[1]
-            else:
-                self.data_int, self.data_str = data[0], data[1]
+        try:
+            self.data_int += int(data[0])
+        except ValueError:
+            try:
+                self.data_str += str(data[0])
+            except ValueError:
+                pass
+        
+        try:
+            self.data_int += int(data[1])
+        except ValueError:
+            try:
+                self.data_str += str(data[1])
+            except ValueError:
+                pass
+
 
     def output(self):
         print(self.data_int, self.data_str, sep = '\t')
@@ -21,7 +27,7 @@ class Obj:
 
 
 
-a = Obj(33,'hello',56,88)
+a = Obj('hello','hello',56,88)
 a.output()
 
 #dat = list(input("user input, use ' ' or ',' : ").replace(' ', ',').split(',')) слишком много перепроверять. 
