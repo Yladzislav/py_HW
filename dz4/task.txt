@@ -1,0 +1,33 @@
+1) Создайте базовый класс Vehicle (транспортное средство) с защищённым (_protected) атрибутом max_speed и приватным (__private) атрибутом mileage.
+ - Добавьте публичный метод display_info(), который выводит эти атрибуты.
+ - Создайте дочерний класс Bus, который наследует Vehicle и добавляет атрибут passenger_capacity.
+ - Переопределите метод display_info() в Bus, чтобы он показывал также вместимость пассажиров.
+
+bus = Bus(180, 10000, 50)
+bus.display_info()  # Должно вывести: Max Speed: 180, Mileage: 10000, Passenger Capacity: 50
+
+2) Создайте класс Temperature с приватным атрибутом __celsius.
+ - Реализуйте геттер и сеттер для celsius, где сеттер проверяет, что температура не может быть ниже -273.15°C (абсолютный ноль).
+ - Добавьте свойство fahrenheit (геттер), которое возвращает температуру в Фаренгейтах (формула: °F = °C * 9/5 + 32).
+
+temp = Temperature(25)
+print(temp.fahrenheit)  # 77.0
+temp.celsius = -300    # Должно вызвать ValueError
+
+3) Реализуйте класс BankAccount:
+ - Приватные атрибуты: __balance, __account_number.
+ - Геттеры для баланса и номера счёта. Сеттер только для баланса (с проверкой, что баланс не может быть отрицательным).
+ - Статический метод generate_account_number(), который возвращает случайный 10-значный номер счёта.
+ - Метод класса create_account(cls, initial_balance), который создаёт аккаунт с сгенерированным номером.
+
+account = BankAccount.create_account(1000)
+print(account.balance)          # 1000
+account.balance = -500          # ValueError
+
+4*)Создайте базовый класс Employee с атрибутами name, salary (защищённый) и методом display_info().
+От него унаследуйте Manager (добавляет атрибут department) и Developer (добавляет programming_language).
+Сделайте так, чтобы salary нельзя было изменить напрямую, но можно было через метод set_salary(), который проверяет, что зарплата не меньше 0.
+
+dev = Developer("Alice", 5000, "Python")
+dev.set_salary(-1000)  # Должно вызвать ошибку
+
